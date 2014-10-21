@@ -24,21 +24,24 @@
         'ok))
     (loop channel)))
 
+(defun loop (channel)
+  (receive
+    ((tuple (match-basic.deliver delivery_tag tag)
+            (match-amqp_msg payload body))
+      (io:format "[x] Received: ~p~n" `(,body))
+      (do-work body)
+      (io:format "[x] Done.~n")
+      (kanin-chan:cast channel (make-basic.ack delivery_tag tag))
+      (loop channel))))
+
 (defun get-dot-count (data)
   (length
     (list-comp
       ((<- char (binary_to_list data)) (== char #\.))
       char)))
 
-(defun loop (channel)
-  (receive
-    ((tuple (match-basic.deliver delivery_tag tag)
-            (match-amqp_msg payload body))
-      (io:format "[x] Received: ~p~n" `(,body))
-      (let ((dots (get-dot-count body)))
+(defun do-work (body)
+  (let ((dots (get-dot-count body)))
         (receive
           (after (* dots 1000)
-            'ok))
-        (io:format "[x] Done.~n"))
-      (kanin-chan:cast channel (make-basic.ack delivery_tag tag))
-      (loop channel))))
+            'ok))))

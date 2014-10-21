@@ -3,12 +3,6 @@
 
 (include-lib "kanin/include/amqp-client.lfe")
 
-(defun make-message
-  (('())
-    "Hello, world!")
-  ((data)
-    data))
-
 (defun send ()
   (send '()))
 
@@ -34,3 +28,9 @@
     (io:format "[x] Sent message '~p'~n" `(,payload))
     (kanin-chan:close channel)
     (kanin-conn:close connection)))
+
+(defun make-message
+  (('())
+    "Hello, world!")
+  ((data)
+    data))
