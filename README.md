@@ -1,24 +1,21 @@
-# Starter Project
+# Kanin Tutorial Code
 
-*For the Kanin Tutorials*
+*For the Kanin / RabbitMQ Tutorials*
 
 
 ## Introduction
 
-The "code" in this starter project isn't really code, but rather just a basic,
-mostly empty LFE project ... but one with all the proper dependencies defined.
-
-The intended use of this project is as a starting point for the developer who
-wants to walk through
+The "code" in this project is the "answer set" for the
 [the Kanin / RabbitMQ tutorials](https://github.com/billosys/kanin/blob/master/doc/tutorials.md).
+This is what you get if you following the steps of each tutorial and complete the tasks as instructed.
 
 
 ## Use
 
 For use with the tutorials, do the following:
 
-1. ``$ git clone https://github.com/billosys/kanin-tutorials-starter.git``
-1. ``$ cd kanin-tutorial-starter``
+1. ``$ git clone https://github.com/billosys/kanin-tutorials.git``
+1. ``$ cd kanin-tutorial``
 1. ``$ make compile``
 
 This step will take a bit longer than most LFE/Erlang ``rebar compile`` steps,
