@@ -4,7 +4,7 @@
 (include-lib "kanin/include/amqp-client.lfe")
 
 (defun receive ()
-  (let* ((net-opts (make-amqp_params_network host "localhost"))
+  (let* ((net-opts (kanin-uri:parse "amqp://localhost"))
          (`#(ok ,connection) (kanin-conn:start net-opts))
          (`#(ok ,channel) (kanin-conn:open-channel connection))
          (queue-name "task-queue")
